@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin título</title>
+</head>
+
+<body>
+procter
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - Procter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            background-color: #fff;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .cart-item .product-name {
+            font-size: 1.2em;
+        }
+        .cart-item .product-price {
+            font-size: 1.1em;
+            color: #333;
+        }
+        .cart-item .product-quantity {
+            display: flex;
+            align-items: center;
+        }
+        .product-quantity input {
+            width: 40px;
+            padding: 5px;
+            text-align: center;
+        }
+        .total {
+            margin-top: 20px;
+            text-align: right;
+            font-size: 1.3em;
+        }
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .checkout-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Carrito de Compras - Procter</h1>
+
+    <div class="cart-item"><div class="product-name">Detergente Procter</div><div class="product-price">Q35.00</div><div class="product-quantity"><button onclick="changeQuantity('detergente', -1)">-</button><input type="number" id="detergente-quantity" value="0" readonly /><button onclick="changeQuantity('detergente', 1)">+</button></div></div>
+    <div class="cart-item"><div class="product-name">Jabón Procter</div><div class="product-price">Q15.00</div><div class="product-quantity"><button onclick="changeQuantity('jabon', -1)">-</button><input type="number" id="jabon-quantity" value="0" readonly /><button onclick="changeQuantity('jabon', 1)">+</button></div></div>
+    <div class="cart-item"><div class="product-name">Limpiador Procter</div><div class="product-price">Q25.00</div><div class="product-quantity"><button onclick="changeQuantity('limpiador', -1)">-</button><input type="number" id="limpiador-quantity" value="0" readonly /><button onclick="changeQuantity('limpiador', 1)">+</button></div></div>
+    <div class="cart-item"><div class="product-name">Toallas Procter</div><div class="product-price">Q12.00</div><div class="product-quantity"><button onclick="changeQuantity('toallas', -1)">-</button><input type="number" id="toallas-quantity" value="0" readonly /><button onclick="changeQuantity('toallas', 1)">+</button></div></div>
+    <div class="cart-item"><div class="product-name">Limpiador de vidrios Procter</div><div class="product-price">Q20.00</div><div class="product-quantity"><button onclick="changeQuantity('limpiadorVidrios', -1)">-</button><input type="number" id="limpiadorVidrios-quantity" value="0" readonly /><button onclick="changeQuantity('limpiadorVidrios', 1)">+</button></div></div>
+    <div class="cart-item"><div class="product-name">Desinfectante Procter</div><div class="product-price">Q30.00</div><div class="product-quantity"><button onclick="changeQuantity('desinfectante', -1)">-</button><input type="number" id="desinfectante-quantity" value="0" readonly /><button onclick="changeQuantity('desinfectante', 1)">+</button></div></div>
+    <div class="cart-item"><div class="product-name">Bolsas Procter</div><div class="product-price">Q10.00</div><div class="product-quantity"><button onclick="changeQuantity('bolsas', -1)">-</button><input type="number" id="bolsas-quantity" value="0" readonly /><button onclick="changeQuantity('bolsas', 1)">+</button></div></div>
+    <div class="cart-item"><div class="product-name">Cera Procter</div><div class="product-price">Q18.00</div><div class="product-quantity"><button onclick="changeQuantity('cera', -1)">-</button><input type="number" id="cera-quantity" value="0" readonly /><button onclick="changeQuantity('cera', 1)">+</button></div></div>
+    <div class="cart-item"><div class="product-name">Cloro Procter</div><div class="product-price">Q22.00</div><div class="product-quantity"><button onclick="changeQuantity('cloro', -1)">-</button><input type="number" id="cloro-quantity" value="0" readonly /><button onclick="changeQuantity('cloro', 1)">+</button></div></div>
+    <div class="cart-item"><div class="product-name">Acondicionador Procter</div><div class="product-price">Q28.00</div><div class="product-quantity"><button onclick="changeQuantity('acondicionador', -1)">-</button><input type="number" id="acondicionador-quantity" value="0" readonly /><button onclick="changeQuantity('acondicionador', 1)">+</button></div></div>
+
+    <div class="total">
+        Total: Q<span id="total-price">0.00</span>
+    </div>
+
+    <button class="checkout-btn" onclick="checkout()">Proceder al Pago</button>
+</div>
+
+<script>
+    const prices = {
+        detergente: 35.00,
+        jabon: 15.00,
+        limpiador: 25.00,
+        toallas: 12.00,
+        limpiadorVidrios: 20.00,
+        desinfectante: 30.00,
+        bolsas: 10.00,
+        cera: 18.00,
+        cloro: 22.00,
+        acondicionador: 28.00
+    };
+
+    function changeQuantity(product, change) {
+        const quantityInput = document.getElementById(`${product}-quantity`);
+        let quantity = parseInt(quantityInput.value) + change;
+        if (quantity < 0) quantity = 0;
+        quantityInput.value = quantity;
+        updateTotal();
+    }
+
+    function updateTotal() {
+        let total = 0;
+        for (let product in prices) {
+            const quantity = parseInt(document.getElementById(`${product}-quantity`).value);
+            total += quantity * prices[product];
+        }
+        document.getElementById('total-price').innerText = total.toFixed(2);
+    }
+
+    function checkout() {
+        alert('Gracias por tu compra! Total: Q' + document.getElementById('total-price').innerText);
+    }
+</script>
+
+</body>
+</html>
+
+</body>
+</html>

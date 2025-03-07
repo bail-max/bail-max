@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin título</title>
+<style type="text/css">
+body,td,th {
+	font-size: 24px;
+	color: #F00;
+}
+</style>
+</head>
+
+<body>
+<div align="center">
+  <h1>FARMACIAS BAIL
+    </p>
+</h1>
+</div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de Visitas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        /* Estilo del contador */
+        .contador {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px 30px;
+            font-size: 24px;
+            border-radius: 10px 0 0 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-weight: bold;
+            border: 2px solid #3e8e41;
+        }
+
+        /* Animación de aparición */
+        .contador p {
+            margin: 0;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .contador h2 {
+            margin: 10px 0;
+            font-size: 32px;
+        }
+
+        .contador span {
+            font-size: 36px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="contador">
+        <h2>Visitas a la página</h2>
+        <p>Contador: <span id="visitCount">0</span></p>
+    </div>
+
+    <script>
+        // Verificar si ya existe un contador de visitas en el localStorage
+        let visitCount = localStorage.getItem("visitCount");
+
+        // Si no existe, inicializamos el contador
+        if (!visitCount) {
+            visitCount = 0;
+        }
+
+        // Incrementar el contador
+        visitCount++;
+
+        // Guardar el contador actualizado en el localStorage
+        localStorage.setItem("visitCount", visitCount);
+
+        // Mostrar el contador en la página
+        document.getElementById("visitCount").textContent = visitCount;
+    </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin título</title>
+</head>
+
+<body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - GLAXO</title>
+    <style>
+        body {
+            font-family: Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e3f2fd;
+        }
+        .container {
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #01579b;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .product-card {
+            background: #ffffff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .product-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .product-price {
+            color: #00796b;
+            margin-bottom: 10px;
+        }
+        .product-quantity input {
+            width: 40px;
+            text-align: center;
+        }
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #0288d1;
+            color: white;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .checkout-btn:hover {
+            background-color: #01579b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Carrito de Compras - GLAXO</h1>
+
+    <div class="product-grid">
+        <div class="product-card"><div class="product-name">Paracetamol GLAXO</div><div class="product-price">Q20.00</div><input type="number" id="paracetamol-quantity" value="0" readonly /><button onclick="changeQuantity('paracetamol', 1)">+</button><button onclick="changeQuantity('paracetamol', -1)">-</button></div>
+        <div class="product-card"><div class="product-name">Amoxicilina GLAXO</div><div class="product-price">Q35.00</div><input type="number" id="amoxicilina-quantity" value="0" readonly /><button onclick="changeQuantity('amoxicilina', 1)">+</button><button onclick="changeQuantity('amoxicilina', -1)">-</button></div>
+        <div class="product-card"><div class="product-name">Ventolin GLAXO</div><div class="product-price">Q50.00</div><input type="number" id="ventolin-quantity" value="0" readonly /><button onclick="changeQuantity('ventolin', 1)">+</button><button onclick="changeQuantity('ventolin', -1)">-</button></div>
+        <div class="product-card"><div class="product-name">Augmentin GLAXO</div><div class="product-price">Q45.00</div><input type="number" id="augmentin-quantity" value="0" readonly /><button onclick="changeQuantity('augmentin', 1)">+</button><button onclick="changeQuantity('augmentin', -1)">-</button></div>
+        <div class="product-card"><div class="product-name">Panadol GLAXO</div><div class="product-price">Q18.00</div><input type="number" id="panadol-quantity" value="0" readonly /><button onclick="changeQuantity('panadol', 1)">+</button><button onclick="changeQuantity('panadol', -1)">-</button></div>
+        <div class="product-card"><div class="product-name">Zovirax GLAXO</div><div class="product-price">Q60.00</div><input type="number" id="zovirax-quantity" value="0" readonly /><button onclick="changeQuantity('zovirax', 1)">+</button><button onclick="changeQuantity('zovirax', -1)">-</button></div>
+        <div class="product-card"><div class="product-name">Seretide GLAXO</div><div class="product-price">Q85.00</div><input type="number" id="seretide-quantity" value="0" readonly /><button onclick="changeQuantity('seretide', 1)">+</button><button onclick="changeQuantity('seretide', -1)">-</button></div>
+        <div class="product-card"><div class="product-name">Bactroban GLAXO</div><div class="product-price">Q55.00</div><input type="number" id="bactroban-quantity" value="0" readonly /><button onclick="changeQuantity('bactroban', 1)">+</button><button onclick="changeQuantity('bactroban', -1)">-</button></div>
+        <div class="product-card"><div class="product-name">Ceftum GLAXO</div><div class="product-price">Q70.00</div><input type="number" id="ceftum-quantity" value="0" readonly /><button onclick="changeQuantity('ceftum', 1)">+</button><button onclick="changeQuantity('ceftum', -1)">-</button></div>
+        <div class="product-card"><div class="product-name">Betnovate GLAXO</div><div class="product-price">Q25.00</div><input type="number" id="betnovate-quantity" value="0" readonly /><button onclick="changeQuantity('betnovate', 1)">+</button><button onclick="changeQuantity('betnovate', -1)">-</button></div>
+    </div>
+
+    <div class="total">
+        Total: Q<span id="total-price">0.00</span>
+    </div>
+
+    <button class="checkout-btn" onclick="checkout()">Proceder al Pago</button>
+</div>
+
+<script>
+    const prices = {
+        paracetamol: 20.00,
+        amoxicilina: 35.00,
+        ventolin: 50.00,
+        augmentin: 45.00,
+        panadol: 18.00,
+        zovirax: 60.00,
+        seretide: 85.00,
+        bactroban: 55.00,
+        ceftum: 70.00,
+        betnovate: 25.00
+    };
+
+    function changeQuantity(product, change) {
+        const quantityInput = document.getElementById(`${product}-quantity`);
+        let quantity = parseInt(quantityInput.value) + change;
+        if (quantity < 0) quantity = 0;
+        quantityInput.value = quantity;
+        updateTotal();
+    }
+
+    function updateTotal() {
+        let total = 0;
+        for (let product in prices) {
+            const quantity = parseInt(document.getElementById(`${product}-quantity`).value);
+            total += quantity * prices[product];
+        }
+        document.getElementById('total-price').innerText = total.toFixed(2);
+    }
+
+    function checkout() {
+        alert('Gracias por tu compra! Total: Q' + document.getElementById('total-price').innerText);
+    }
+</script>
+
+</body>
+</html>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>
